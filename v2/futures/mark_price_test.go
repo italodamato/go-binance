@@ -67,15 +67,15 @@ func (s *fundingRateServiceTestSuite) TestGetFundingRate() {
 	data := []byte(`[
 		{
 			"symbol": "BTCUSDT",
-			"fundingRate": "-0.03750000",
-			"fundingTime": 1570608000000,
-			"time": 1576566020000
+			"fundingTime": 1576569600000,
+			"fundingRate": "-0.00013429",
+			"markPrice": ""
 		},
 		{
 			"symbol": "BTCUSDT",
-			"fundingRate": "0.00010000",
-			"fundingTime": 1570636800000,
-			"time": 1576566020000
+			"fundingTime": 1576598400000,
+			"fundingRate": "-0.00001606",
+			"markPrice": ""
 		}
 	]`)
 	s.mockDo(data, nil)
@@ -101,15 +101,15 @@ func (s *fundingRateServiceTestSuite) TestGetFundingRate() {
 	e := []*FundingRate{
 		{
 			Symbol:      symbol,
-			FundingRate: "-0.03750000",
-			FundingTime: int64(1570608000000),
-			Time:        int64(1576566020000),
+			FundingRate: "-0.00013429",
+			FundingTime: int64(1576569600000),
+			MarkPrice:   "",
 		},
 		{
 			Symbol:      symbol,
-			FundingRate: "0.00010000",
-			FundingTime: int64(1570636800000),
-			Time:        int64(1576566020000),
+			FundingRate: "-0.00001606",
+			FundingTime: int64(1576598400000),
+			MarkPrice:   "",
 		},
 	}
 	s.r().Len(res, len(e))
@@ -123,7 +123,7 @@ func (s *fundingRateServiceTestSuite) assertFundingRateEqual(e, a *FundingRate) 
 	r.Equal(e.Symbol, a.Symbol, "Symbol")
 	r.Equal(e.FundingRate, a.FundingRate, "FundingRate")
 	r.Equal(e.FundingTime, a.FundingTime, "FundingTime")
-	r.Equal(e.Time, a.Time, "Time")
+	r.Equal(e.MarkPrice, a.MarkPrice, "MarkPrice")
 }
 
 type getLeverageBracketServiceTestSuite struct {
